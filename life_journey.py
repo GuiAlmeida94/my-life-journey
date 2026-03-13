@@ -2,32 +2,43 @@ import streamlit as st
 
 # Page setup
 st.set_page_config(
-    page_title="Guilherme Oyakawa - Journey", 
+    page_title="Guilherme Oyakawa - Life Journey", 
     page_icon="📊", 
     layout="wide"
 )
 
-# Injecting AOS Library and Custom CSS
+# Pure CSS Scroll Animation (No JavaScript, No external libraries)
 st.markdown("""
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
     <style>
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
     
+    /* The Timeline Line */
     .v-timeline {
         border-left: 3px solid #007bff;
         margin-left: 50px;
         padding-left: 30px;
         position: relative;
-        padding-top: 20px;
     }
+
+    /* PowerPoint Reveal Animation */
+    @keyframes reveal {
+        from { opacity: 0; transform: translateY(50px) scale(0.9); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
     .v-event {
         margin-bottom: 60px;
         position: relative;
+        /* This ensures the animation feels like a 'reveal' while scrolling */
+        view-timeline-name: --item;
+        view-timeline-axis: block;
+        animation: reveal both;
+        animation-timeline: --item;
+        animation-range: entry 10% cover 30%;
     }
+
     .v-marker {
         position: absolute;
         left: -41px;
@@ -39,12 +50,14 @@ st.markdown("""
         border: 4px solid white;
         box-shadow: 0 0 8px rgba(0,123,255,0.4);
     }
+
     .v-date {
         font-weight: bold;
         color: #007bff;
         font-size: 1.1em;
         margin-bottom: 8px;
     }
+
     .v-content {
         background: #ffffff;
         padding: 25px;
@@ -52,28 +65,13 @@ st.markdown("""
         box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         border-left: 6px solid #007bff;
     }
+
     .v-headline {
         font-size: 1.4em;
         font-weight: bold;
         margin-bottom: 10px;
     }
-    .v-text {
-        font-size: 1em;
-        color: #444;
-        line-height: 1.6;
-    }
     </style>
-    
-    <script>
-        // Initialize AOS animation
-        setTimeout(() => {
-            AOS.init({
-                duration: 1000,
-                once: false,
-                mirror: true
-            });
-        }, 500);
-    </script>
     """, unsafe_allow_html=True)
 
 st.title("📂 Professional & Personal Timeline")
@@ -99,11 +97,10 @@ events = [
     {"date": "2026", "headline": "🚀 Starting The New Phase", "text": "Ready for new challenges as a Data Analyst in Europe!"}
 ]
 
-# Rendering with AOS attributes
 st.markdown('<div class="v-timeline">', unsafe_allow_html=True)
 for event in events:
     st.markdown(f"""
-    <div class="v-event" data-aos="fade-up">
+    <div class="v-event">
         <div class="v-marker"></div>
         <div class="v-date">{event['date']}</div>
         <div class="v-content">
