@@ -153,17 +153,16 @@ timeline(items, height=700)
 # Sidebar with expanded info and skills
 with st.sidebar:
     st.header("Key Information")
-    st.write("**Name:** Guilherme Oyakawa")
-    st.write("**Languages:** 🇵🇹 PT, 🇬🇧 EN, 🇩🇪 DE, 🇮🇹 IT")
+    st.write("**Name:** Guilherme Oyakawa de Almeida")
+    st.write("**Languages:** Portuguese, English, German, Italian")
     st.write("**Citizenship:** Brazilian & Portuguese 🇪🇺")
     
     st.divider()
     
     st.header("Technical Skills")
-    st.write("🐍 **Python** (Pandas, Numpy, Streamlit)")
+    st.write("🐍 **Python** (Pandas, Numpy, Matplotlib, Seaborn , Sci-kit learn)")
     st.write("🗄️ **SQL** (Queries, Data Modeling)")
     st.write("📊 **Business Intelligence** (Power BI, Tableau)")
-    st.write("📐 **Engineering** (Catia V5, Project Management)")
     
     st.divider()
     
