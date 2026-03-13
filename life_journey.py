@@ -84,3 +84,87 @@ items = {
         {
             "start_date": {"year": "2022", "month": "10", "day": "28"},
             "text": {
+                "headline": "🕯️ Personal Loss",
+                "text": "Passing of my mother - A turning point in my life."
+            }
+        },
+        {
+            "start_date": {"year": "2023", "month": "4"},
+            "text": {
+                "headline": "<img src='https://flagcdn.com/w40/it.png' width='25'> Transfer to Italy",
+                "text": "Moved to Italy to find opportunities in Europe."
+            }
+        },
+        {
+            "start_date": {"year": "2023", "month": "8"},
+            "text": {
+                "headline": "🏎️ Consultant at Micla Engineering",
+                "text": "Supported Italdesign Giugiaro in automotive testing."
+            }
+        },
+        {
+            "start_date": {"year": "2023", "month": "10"},
+            "text": {
+                "headline": "📈 Master in Data Science",
+                "text": "Enrolled at Rome Business School."
+            }
+        },
+        {
+            "start_date": {"year": "2024", "month": "10"},
+            "text": {
+                "headline": "🎓 Master's Graduated",
+                "text": "Finished Master in Data Science (Grade 28/30)."
+            }
+        },
+        {
+            "start_date": {"year": "2025", "month": "5"},
+            "text": {
+                "headline": "<img src='https://flagcdn.com/w40/pt.png' width='25'> Dual Citizenship",
+                "text": "Received Portuguese Citizenship - EU Work Authorization."
+            }
+        },
+        {
+            "start_date": {"year": "2025", "month": "7"},
+            "text": {
+                "headline": "🛠️ Quality Operator for BMW",
+                "text": "Coveract/Minibea: Quality analysis for BMW door handles."
+            }
+        },
+        {
+            "start_date": {"year": "2025", "month": "10"},
+            "text": {
+                "headline": "📜 Imperial College Certificate",
+                "text": "Data Analytics professional certificate."
+            }
+        },
+        {
+            "start_date": {"year": "2026"},
+            "text": {
+                "headline": "🚀 Starting The New Phase",
+                "text": "Ready for new challenges as a Data Analyst in Europe!"
+            }
+        }
+    ]
+}
+
+# Rendering
+timeline(items, height=700)
+
+# Sidebar with expanded info and skills
+with st.sidebar:
+    st.header("Key Information")
+    st.write("**Name:** Guilherme Oyakawa")
+    st.write("**Languages:** 🇵🇹 PT, 🇬🇧 EN, 🇩🇪 DE, 🇮🇹 IT")
+    st.write("**Citizenship:** Brazilian & Portuguese 🇪🇺")
+    
+    st.divider()
+    
+    st.header("Technical Skills")
+    st.write("🐍 **Python** (Pandas, Numpy, Streamlit)")
+    st.write("🗄️ **SQL** (Queries, Data Modeling)")
+    st.write("📊 **Business Intelligence** (Power BI, Tableau)")
+    st.write("📐 **Engineering** (Catia V5, Project Management)")
+    
+    st.divider()
+    
+    st.info("Currently focused on Data Analytics opportunities in Europe.")
