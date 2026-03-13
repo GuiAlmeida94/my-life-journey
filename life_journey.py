@@ -136,6 +136,7 @@ items = {
                 "text": "Looking forward to new challenges as a Data Analyst in Europe!"
             }
         }
+         ]
 }
 
 # Render the timeline component
