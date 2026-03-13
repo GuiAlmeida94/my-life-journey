@@ -18,24 +18,24 @@ items = {
         {
             "start_date": {"year": "1994", "month": "1", "day": "27"},
             "text": {
-                "headline": "👶 Born in Santo André, Brazil",
-                "text": "The start of the journey in São Paulo state."
+                "headline": "<img src='https://flagcdn.com/w40/br.png' width='25'> Born in Santo André, Brazil",
+                "text": "The start of the journey - Star of the Journey."
             }
         },
         {
             "start_date": {"year": "1998", "month": "8"},
             "end_date": {"year": "2000", "month": "1"},
             "text": {
-                "headline": "🇩🇪 First International Experience",
-                "text": "Moved to Germany for the first time, beginning a life of multicultural experiences."
+                "headline": "<img src='https://flagcdn.com/w40/de.png' width='25'> First International Experience",
+                "text": "Move to Germany - A multicultural childhood beginning."
             }
         },
-        {
+        {{
             "start_date": {"year": "2009", "month": "3"},
             "end_date": {"year": "2011", "month": "6"},
             "text": {
-                "headline": "🇩🇪 Education in Germany",
-                "text": "Second experience in Germany, attending Realschule and Gymnasium, strengthening European cultural ties."
+                "headline": "<img src='https://flagcdn.com/w40/de.png' width='25'> Second Experience in Germany",
+                "text": "Academic period attending Realschule and Gymnasium."
             }
         },
         {
@@ -83,8 +83,8 @@ items = {
         {
             "start_date": {"year": "2023", "month": "4"},
             "text": {
-                "headline": "🇮🇹 Move to Italy",
-                "text": "Relocated to Italy to seek new professional horizons in the European market."
+                "headline": "<img src='https://flagcdn.com/w40/it.png' width='25'> Transfer to Italy",
+                "text": "Relocated to Italy to explore European professional opportunities."
             }
         },
         {
@@ -111,8 +111,8 @@ items = {
         {
             "start_date": {"year": "2025", "month": "5"},
             "text": {
-                "headline": "🇪🇺 Portuguese Citizenship",
-                "text": "Dual citizenship granted, enabling full work authorization across the European Union."
+                "headline": "<img src='https://flagcdn.com/w40/pt.png' width='25'> Portuguese Citizenship",
+                "text": "Dual citizenship granted, allowing full work authorization across the EU."
             }
         },
         {
