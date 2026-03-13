@@ -1,18 +1,26 @@
 import streamlit as st
 from streamlit_timeline import timeline
 
-# Page setup for a professional look
+# Page setup
 st.set_page_config(
-    page_title="Guilherme Oyakawa - Professional Journey", 
+    page_title="Guilherme Oyakawa - Life Journey", 
     page_icon="📊", 
     layout="wide"
 )
 
+# Custom CSS to hide the hamburger menu and footer for a cleaner look
+st.markdown("""
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    </style>
+    """, unsafe_allow_html=True)
+
 st.title("📂 Professional & Personal Timeline")
 st.subheader("Guilherme Oyakawa de Almeida | Data & Business Analyst")
 
-# Data structure containing your life events
-# Comments in English to maintain the coding standard
+# Data structure - Fully checked for Syntax
 items = {
     "events": [
         {
@@ -27,10 +35,10 @@ items = {
             "end_date": {"year": "2000", "month": "1"},
             "text": {
                 "headline": "<img src='https://flagcdn.com/w40/de.png' width='25'> First International Experience",
-                "text": "Move to Germany - A multicultural childhood beginning."
+                "text": "Move to Germany - Return Home in 2000."
             }
         },
-        {{
+        {
             "start_date": {"year": "2009", "month": "3"},
             "end_date": {"year": "2011", "month": "6"},
             "text": {
@@ -42,111 +50,108 @@ items = {
             "start_date": {"year": "2012", "month": "2"},
             "text": {
                 "headline": "⚙️ First Job: Engineering Intern",
-                "text": "<b>Rucker do Brasil:</b> Developed technical drawing skills using Catia V5 for major clients like Peugeot, Volkswagen, and Renault."
+                "text": "Rucker do Brasil: Catia V5 design for Peugeot, Volkswagen, and Renault."
             }
         },
         {
             "start_date": {"year": "2016", "month": "7"},
             "text": {
-                "headline": "🍦 Store Manager - Family Business",
-                "text": "Managed operations, inventory, and financial control, optimizing cash flow and customer experience."
+                "headline": "🍦 Store Manager",
+                "text": "Managed family business dessert shop. Focus on financial control."
             }
         },
         {
             "start_date": {"year": "2017", "month": "1"},
             "text": {
-                "headline": "🎓 Business Management Degree",
-                "text": "Enrolled at Faculdade São Bernardo (FASB) to solidify business foundations."
+                "headline": "🎓 University Enrollment",
+                "text": "Business Management at FASB."
             }
         },
         {
             "start_date": {"year": "2019", "month": "10"},
             "text": {
-                "headline": "🌐 Intern at T-Systems do Brasil",
-                "text": "Assisted Service Delivery Managers (SDMs) and conducted daily meetings with global teams in English."
+                "headline": "🌐 T-Systems do Brasil",
+                "text": "Service Delivery Management intern. Working with global teams in English."
             }
         },
         {
             "start_date": {"year": "2022", "month": "3"},
             "text": {
                 "headline": "📦 Business Assistant at Zenatur",
-                "text": "Coordinated logistics for Samsung promotional materials at major events like Brasil Game Show (BGS)."
+                "text": "Logistics for Samsung promotional materials at BGS."
             }
         },
         {
             "start_date": {"year": "2022", "month": "10", "day": "28"},
             "text": {
                 "headline": "🕯️ Personal Loss",
-                "text": "Passing of my mother. A moment of profound personal transformation and resilience."
+                "text": "Passing of my mother - A turning point in my life."
             }
         },
         {
             "start_date": {"year": "2023", "month": "4"},
             "text": {
                 "headline": "<img src='https://flagcdn.com/w40/it.png' width='25'> Transfer to Italy",
-                "text": "Relocated to Italy to explore European professional opportunities."
+                "text": "Moved to Italy to find opportunities in Europe."
             }
         },
         {
             "start_date": {"year": "2023", "month": "8"},
             "text": {
                 "headline": "🏎️ Consultant at Micla Engineering",
-                "text": "Supported <b>Italdesign Giugiaro</b> in automotive durability testing and process improvement."
+                "text": "Supported Italdesign Giugiaro in automotive testing."
             }
         },
         {
             "start_date": {"year": "2023", "month": "10"},
             "text": {
                 "headline": "📈 Master in Data Science",
-                "text": "Enrolled at Rome Business School to transition into advanced data analytics."
+                "text": "Enrolled at Rome Business School."
             }
         },
         {
             "start_date": {"year": "2024", "month": "10"},
             "text": {
-                "headline": "🎓 Master's Degree Completed",
-                "text": "Finished Master in Data Science with a high grade of 28/30."
+                "headline": "🎓 Master's Graduated",
+                "text": "Finished Master in Data Science (Grade 28/30)."
             }
         },
         {
             "start_date": {"year": "2025", "month": "5"},
             "text": {
-                "headline": "<img src='https://flagcdn.com/w40/pt.png' width='25'> Portuguese Citizenship",
-                "text": "Dual citizenship granted, allowing full work authorization across the EU."
+                "headline": "<img src='https://flagcdn.com/w40/pt.png' width='25'> Dual Citizenship",
+                "text": "Received Portuguese Citizenship - EU Work Authorization."
             }
         },
         {
             "start_date": {"year": "2025", "month": "7"},
             "text": {
-                "headline": "🛠️ Quality Operator at Coveract",
-                "text": "Worked at Minibea Access Solutions for <b>BMW</b>, analyzing performance charts and ensuring quality standards."
+                "headline": "🛠️ Quality Operator for BMW",
+                "text": "Coveract/Minibea: Quality analysis for BMW door handles."
             }
         },
         {
             "start_date": {"year": "2025", "month": "10"},
             "text": {
-                "headline": "📜 Professional Certificate - Imperial College",
-                "text": "Specializing in Data Analytics at Imperial College Business School."
+                "headline": "📜 Imperial College Certificate",
+                "text": "Data Analytics professional certificate."
             }
         },
         {
             "start_date": {"year": "2026"},
             "text": {
-                "headline": "🚀 The New Phase",
-                "text": "Looking forward to new challenges as a Data Analyst in Europe!"
+                "headline": "🚀 Starting The New Phase",
+                "text": "Ready for new challenges as a Data Analyst in Europe!"
             }
         }
-         ]
+    ]
 }
 
-# Render the timeline component
+# Rendering
 timeline(items, height=700)
 
-# Sidebar for quick facts
 with st.sidebar:
-    st.image("https://img.icons8.com/clouds/100/data-configuration.png")
     st.header("Key Information")
-    st.write("**Full Name:** Guilherme Oyakawa de Almeida")
-    st.write("**Languages:** Portuguese, English, German, italian")
-    st.write("**Citzenship:** Brazilian & Portuguese")
-    st.write("**Top Skills:** Python, SQL, Power BI, Tableau, Data Science")
+    st.write("**Name:** Guilherme Oyakawa")
+    st.write("**Languages:** PT, EN, DE")
+    st.write("**Citizenship:** BR & PT")
