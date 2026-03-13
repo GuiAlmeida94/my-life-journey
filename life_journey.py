@@ -92,7 +92,7 @@ events = [
     {"date": "Oct 2023", "headline": "📈 Master in Data Science", "text": "Enrolled at Rome Business School."},
     {"date": "Oct 2024", "headline": "🎓 Master's Graduated", "text": "Finished Master in Data Science (Grade 28/30)."},
     {"date": "May 2025", "headline": "<img src='https://flagcdn.com/w40/pt.png' width='25'> Dual Citizenship", "text": "Received Portuguese Citizenship - EU Work Authorization."},
-    {"date": "Jul 2025", "headline": "🛠️ Quality Operator for BMW", "text": "Coveract/Minibea: Quality analysis for BMW door handles."},
+    {"date": "Jul 2025", "headline": "🛠️ Quality Analyst for BMW", "text": "Coveract/Minibea: Quality analysis for BMW door handles."},
     {"date": "Oct 2025", "headline": "📜 Imperial College Certificate", "text": "Data Analytics professional certificate."},
     {"date": "2026", "headline": "🚀 Starting The New Phase", "text": "Ready for new challenges as a Data Analyst in Europe!"}
 ]
