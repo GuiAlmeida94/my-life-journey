@@ -147,6 +147,6 @@ with st.sidebar:
     st.image("https://img.icons8.com/clouds/100/data-configuration.png")
     st.header("Key Information")
     st.write("**Full Name:** Guilherme Oyakawa de Almeida")
-    st.write("**Languages:** Portuguese, English, German")
+    st.write("**Languages:** Portuguese, English, German, italian")
     st.write("**Citzenship:** Brazilian & Portuguese")
-    st.write("**Top Skills:** Python, SQL, Power BI, Data Science")
+    st.write("**Top Skills:** Python, SQL, Power BI, Tableau, Data Science")
