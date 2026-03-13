@@ -2,34 +2,31 @@ import streamlit as st
 
 # Page setup
 st.set_page_config(
-    page_title="Guilherme Oyakawa - Life Journey", 
+    page_title="Guilherme Oyakawa - Journey", 
     page_icon="📊", 
     layout="wide"
 )
 
-# Infallible CSS for Vertical Timeline with smooth entrance
+# Injecting AOS Library and Custom CSS
 st.markdown("""
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
     <style>
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
     
-    @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
     .v-timeline {
         border-left: 3px solid #007bff;
         margin-left: 50px;
         padding-left: 30px;
         position: relative;
-        padding-top: 10px;
+        padding-top: 20px;
     }
     .v-event {
-        margin-bottom: 40px;
+        margin-bottom: 60px;
         position: relative;
-        animation: fadeInUp 0.8s ease-out forwards;
     }
     .v-marker {
         position: absolute;
@@ -45,34 +42,43 @@ st.markdown("""
     .v-date {
         font-weight: bold;
         color: #007bff;
-        font-size: 1em;
-        margin-bottom: 5px;
+        font-size: 1.1em;
+        margin-bottom: 8px;
     }
     .v-content {
         background: #ffffff;
-        padding: 18px;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-        border-left: 5px solid #007bff;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        border-left: 6px solid #007bff;
     }
     .v-headline {
-        font-size: 1.2em;
+        font-size: 1.4em;
         font-weight: bold;
-        margin-bottom: 5px;
+        margin-bottom: 10px;
     }
     .v-text {
-        font-size: 0.95em;
+        font-size: 1em;
         color: #444;
-        line-height: 1.4;
+        line-height: 1.6;
     }
     </style>
+    
+    <script>
+        // Initialize AOS animation
+        setTimeout(() => {
+            AOS.init({
+                duration: 1000,
+                once: false,
+                mirror: true
+            });
+        }, 500);
+    </script>
     """, unsafe_allow_html=True)
 
-# Main Title
 st.title("📂 Professional & Personal Timeline")
 st.subheader("Guilherme Oyakawa de Almeida | Data & Business Analyst")
 
-# Data structure
 events = [
     {"date": "Jan 27, 1994", "headline": "<img src='https://flagcdn.com/w40/br.png' width='25'> Born in Santo André, Brazil", "text": "The start of the journey - Star of the Journey."},
     {"date": "Aug 1998 - Jan 2000", "headline": "<img src='https://flagcdn.com/w40/de.png' width='25'> First International Experience", "text": "Move to Germany - Return Home in 2000."},
@@ -93,11 +99,11 @@ events = [
     {"date": "2026", "headline": "🚀 Starting The New Phase", "text": "Ready for new challenges as a Data Analyst in Europe!"}
 ]
 
-# Rendering
+# Rendering with AOS attributes
 st.markdown('<div class="v-timeline">', unsafe_allow_html=True)
 for event in events:
     st.markdown(f"""
-    <div class="v-event">
+    <div class="v-event" data-aos="fade-up">
         <div class="v-marker"></div>
         <div class="v-date">{event['date']}</div>
         <div class="v-content">
