@@ -7,35 +7,29 @@ st.set_page_config(
     layout="wide"
 )
 
-# Advanced CSS for Animations and Vertical Layout
+# Infallible CSS for Vertical Timeline with smooth entrance
 st.markdown("""
     <style>
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
     
-    /* Animation classes */
-    .hidden {
-        opacity: 0;
-        filter: blur(5px);
-        transform: translateX(-100%);
-        transition: all 1s;
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
     }
-    .show {
-        opacity: 1;
-        filter: blur(0);
-        transform: translateX(0);
-    }
-    
+
     .v-timeline {
         border-left: 3px solid #007bff;
         margin-left: 50px;
         padding-left: 30px;
         position: relative;
+        padding-top: 10px;
     }
     .v-event {
-        margin-bottom: 50px;
+        margin-bottom: 40px;
         position: relative;
+        animation: fadeInUp 0.8s ease-out forwards;
     }
     .v-marker {
         position: absolute;
@@ -46,44 +40,32 @@ st.markdown("""
         border-radius: 50%;
         background-color: #007bff;
         border: 4px solid white;
-        box-shadow: 0 0 10px rgba(0,123,255,0.5);
+        box-shadow: 0 0 8px rgba(0,123,255,0.4);
     }
     .v-date {
         font-weight: bold;
         color: #007bff;
-        font-size: 1.1em;
+        font-size: 1em;
         margin-bottom: 5px;
     }
     .v-content {
-        background: #f8f9fa;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        background: #ffffff;
+        padding: 18px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
         border-left: 5px solid #007bff;
     }
     .v-headline {
-        font-size: 1.3em;
+        font-size: 1.2em;
         font-weight: bold;
-        margin-bottom: 8px;
+        margin-bottom: 5px;
+    }
+    .v-text {
+        font-size: 0.95em;
+        color: #444;
+        line-height: 1.4;
     }
     </style>
-    
-    <script>
-    // Intersection Observer to trigger animations on scroll
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('show');
-            }
-        });
-    });
-
-    // Wait for elements to be rendered
-    setTimeout(() => {
-        const hiddenElements = document.querySelectorAll('.hidden');
-        hiddenElements.forEach((el) => observer.observe(el));
-    }, 1000);
-    </script>
     """, unsafe_allow_html=True)
 
 # Main Title
@@ -111,11 +93,11 @@ events = [
     {"date": "2026", "headline": "🚀 Starting The New Phase", "text": "Ready for new challenges as a Data Analyst in Europe!"}
 ]
 
-# Rendering Vertical Timeline with hidden class for animation
+# Rendering
 st.markdown('<div class="v-timeline">', unsafe_allow_html=True)
 for event in events:
     st.markdown(f"""
-    <div class="v-event hidden">
+    <div class="v-event">
         <div class="v-marker"></div>
         <div class="v-date">{event['date']}</div>
         <div class="v-content">
