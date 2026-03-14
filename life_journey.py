@@ -115,7 +115,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 with st.sidebar:
     st.header("Key Information")
     st.write("**Name:** Guilherme Oyakawa de Almeida")
-    st.write("**Languages:** Portuguese, English, German, Italian")
+    st.write("**Languages:** Portuguese (Native) , English (C1), German (B1), Italian (B2)")
     st.write("**Citizenship:** Brazilian & Portuguese 🇪🇺")
     st.divider()
     st.header("Technical Skills")
