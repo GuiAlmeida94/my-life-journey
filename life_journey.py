@@ -1,121 +1,41 @@
 import streamlit as st
 
-# --- 1. CONFIGURAÇÃO DA PÁGINA (Imediata) ---
-st.set_page_config(
-    page_title="Guilherme Oyakawa - Life Journey", 
-    page_icon="📊", 
-    layout="wide"
-)
+# 1. Configuração Imediata
+st.set_page_config(page_title="Guilherme Oyakawa", layout="wide")
 
-# --- 2. CSS DE ALTA PERFORMANCE ---
-# Removi animações complexas que causam Layout Shift (CLS)
+# 2. CSS Estático (Inline para evitar requisições extras)
 st.markdown("""
     <style>
-    /* Reset de margens para carregamento mais rápido */
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
-    
-    .v-timeline {
-        border-left: 4px solid #007bff;
-        margin-left: 30px;
-        padding-left: 20px;
-        position: relative;
-    }
-
-    .v-event {
-        margin-bottom: 25px;
-        position: relative;
-        /* Animação ultra simples que não afeta o CLS */
-        animation: fadeIn 0.5s ease-in;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-
-    .v-marker {
-        position: absolute;
-        left: -32px;
-        top: 5px;
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        background-color: #007bff;
-        border: 3px solid white;
-    }
-
-    .v-date {
-        font-weight: bold;
-        color: #007bff;
-        font-size: 0.9em;
-        margin-bottom: 2px;
-    }
-
-    .v-content {
-        background: #f8f9fa;
-        padding: 15px;
-        border-radius: 8px;
-        border-left: 5px solid #007bff;
-        /* Evita que o card mude de tamanho durante o load */
-        min-height: 80px;
-    }
-
-    .v-headline {
-        font-size: 1.1em;
-        font-weight: bold;
-        color: #111;
-    }
-    .v-text { color: #555; font-size: 0.9em; }
+    #MainMenu, footer, header {visibility: hidden;}
+    .stApp {max-width: 1000px; margin: 0 auto;}
+    .v-timeline {border-left: 3px solid #007bff; margin-left: 20px; padding-left: 20px;}
+    .v-event {margin-bottom: 20px; font-family: sans-serif;}
+    .v-content {background: #fdfdfd; padding: 12px; border-radius: 8px; border: 1px solid #eee; border-left: 4px solid #007bff;}
+    .v-date {color: #007bff; font-weight: bold; font-size: 0.9rem;}
+    .v-headline {font-weight: bold; font-size: 1.1rem; color: #222;}
+    .v-text {color: #666; font-size: 0.9rem;}
     </style>
-    """, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
-# --- 3. DADOS COM CACHE ---
-@st.cache_data
-def get_events():
-    return [
-        {"date": "Jan 27, 1994", "headline": "🇧🇷 Born in Brazil", "text": "The start of the journey."},
-        {"date": "1998 - 2011", "headline": "🇩🇪 Germany Experience", "text": "Academic period and international living."},
-        {"date": "2012", "headline": "⚙️ Engineering Intern", "text": "Rucker do Brasil: Catia V5 design."},
-        {"date": "2016 - 2018", "headline": "🍦 Store Manager", "text": "Financial control and management."},
-        {"date": "2019 - 2021", "headline": "🌐 T-Systems do Brasil", "text": "Service Delivery Management."},
-        {"date": "2022", "headline": "📦 Zenatur", "text": "Logistics for Samsung/BGS."},
-        {"date": "2023", "headline": "🇮🇹 Move to Italy", "text": "Relocation for European opportunities."},
-        {"date": "2023 - 2024", "headline": "🏎️ Micla Engineering", "text": "Automotive testing consultant."},
-        {"date": "2024", "headline": "🎓 Master in Data Science", "text": "Graduated from Rome Business School (28/30)."},
-        {"date": "2025", "headline": "🇵🇹 Dual Citizenship", "text": "Portuguese Citizenship obtained."},
-        {"date": "2025", "headline": "🛠️ BMW Quality Analyst", "text": "Quality analysis for BMW door handles."},
-        {"date": "2026", "headline": "🚀 Data Analyst", "text": "Ready for new challenges in Europe!"}
-    ]
+# 3. Dados Hardcoded (Sem funções para máxima velocidade)
+events = [
+    {"d": "1994-2011", "h": "🇧🇷 Born & 🇩🇪 Germany", "t": "Early life and international background."},
+    {"d": "2012-2021", "h": "⚙️ Engineering & T-Systems", "t": "Technical internships and Service Delivery."},
+    {"d": "2022-2024", "h": "🇮🇹 Italy & Master's", "t": "Master in Data Science (28/30) at Rome Business School."},
+    {"d": "2025-2026", "h": "🇵🇹 Quality Analyst & Data Analyst", "t": "Ready for European Data opportunities."}
+]
 
-# --- 4. RENDERIZAÇÃO ---
-st.title("📂 Professional Timeline")
-st.subheader("Guilherme Oyakawa | Data & Business Analyst")
+# 4. Renderização Direta
+st.title("Guilherme Oyakawa | Portfolio")
+st.write("Data & Business Analyst")
 
-events = get_events()
-
-# Construção em bloco único para evitar múltiplas chamadas de markdown
-timeline_html = '<div class="v-timeline">'
+html = '<div class="v-timeline">'
 for e in events:
-    timeline_html += f"""
-    <div class="v-event">
-        <div class="v-marker"></div>
-        <div class="v-date">{e['date']}</div>
-        <div class="v-content">
-            <div class="v-headline">{e['headline']}</div>
-            <div class="v-text">{e['text']}</div>
-        </div>
-    </div>"""
-timeline_html += '</div>'
+    html += f'<div class="v-event"><div class="v-date">{e["d"]}</div><div class="v-content"><div class="v-headline">{e["h"]}</div><div class="v-text">{e["t"]}</div></div></div>'
+html += '</div>'
 
-st.markdown(timeline_html, unsafe_allow_html=True)
+st.markdown(html, unsafe_allow_html=True)
 
-# --- 5. SIDEBAR ---
-with st.sidebar:
-    st.header("Key Info")
-    st.info("🇧🇷 Brazilian | 🇵🇹 Portuguese")
-    st.write("**Languages:** PT, EN, DE, IT")
-    st.divider()
-    st.header("Skills")
-    st.code("Python, SQL, Power BI, Tableau", language='text')
+# 5. Sidebar Minimalista
+st.sidebar.markdown("### Contact & Skills")
+st.sidebar.code("Python | SQL | BI", language='text')
