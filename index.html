@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guilherme Oyakawa - Life Journey</title>
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            display: flex;
+        }
+
+        /* Sidebar Style */
+        .sidebar {
+            width: 300px;
+            background: #fff;
+            height: 100vh;
+            position: fixed;
+            padding: 30px;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+            overflow-y: auto;
+        }
+
+        /* Main Content Style */
+        .main-content {
+            margin-left: 360px;
+            padding: 50px;
+            max-width: 800px;
+        }
+
+        h1 { margin-bottom: 5px; color: #111; }
+        h3 { margin-top: 0; color: #666; font-weight: normal; }
+
+        /* Timeline Logic */
+        .v-timeline {
+            border-left: 4px solid var(--primary-color);
+            margin-top: 40px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .v-event {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .v-marker {
+            position: absolute;
+            left: -42px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            border: 4px solid #fff;
+            box-shadow: 0 0 10px rgba(0,123,255,0.2);
+        }
+
+        .v-date {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 0.95em;
+            margin-bottom: 5px;
+        }
+
+        .v-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 6px solid var(--primary-color);
+        }
+
+        .v-headline {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #111;
+        }
+
+        .v-text { color: #555; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { width: auto; height: auto; position: relative; }
+            .main-content { margin-left: 0; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>Key Information</h2>
+        <p><strong>Name:</strong>
