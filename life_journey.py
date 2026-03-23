@@ -1,122 +1,121 @@
 import streamlit as st
 
-# --- 1. CONFIGURAÇÃO DA PÁGINA ---
+# --- 1. CONFIGURAÇÃO DA PÁGINA (Imediata) ---
 st.set_page_config(
     page_title="Guilherme Oyakawa - Life Journey", 
     page_icon="📊", 
     layout="wide"
 )
 
-# --- 2. ESTILOS CSS ---
+# --- 2. CSS DE ALTA PERFORMANCE ---
+# Removi animações complexas que causam Layout Shift (CLS)
 st.markdown("""
     <style>
+    /* Reset de margens para carregamento mais rápido */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
     
     .v-timeline {
-        border-left: 3px solid #007bff;
-        margin-left: 50px;
-        padding-left: 30px;
+        border-left: 4px solid #007bff;
+        margin-left: 30px;
+        padding-left: 20px;
         position: relative;
     }
 
     .v-event {
-        margin-bottom: 40px;
+        margin-bottom: 25px;
         position: relative;
+        /* Animação ultra simples que não afeta o CLS */
+        animation: fadeIn 0.5s ease-in;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
     }
 
     .v-marker {
         position: absolute;
-        left: -41px;
-        top: 0;
-        width: 20px;
-        height: 20px;
+        left: -32px;
+        top: 5px;
+        width: 16px;
+        height: 16px;
         border-radius: 50%;
         background-color: #007bff;
-        border: 4px solid white;
-        box-shadow: 0 0 8px rgba(0,123,255,0.4);
+        border: 3px solid white;
     }
 
     .v-date {
         font-weight: bold;
         color: #007bff;
-        font-size: 1.1em;
-        margin-bottom: 5px;
+        font-size: 0.9em;
+        margin-bottom: 2px;
     }
 
     .v-content {
-        background: #ffffff;
-        padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        border-left: 6px solid #007bff;
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        border-left: 5px solid #007bff;
+        /* Evita que o card mude de tamanho durante o load */
+        min-height: 80px;
     }
 
     .v-headline {
-        font-size: 1.3em;
+        font-size: 1.1em;
         font-weight: bold;
-        margin-bottom: 5px;
         color: #111;
     }
-    .v-text { color: #444; }
+    .v-text { color: #555; font-size: 0.9em; }
     </style>
     """, unsafe_allow_html=True)
 
-# --- 3. DADOS ---
+# --- 3. DADOS COM CACHE ---
 @st.cache_data
-def get_timeline_data():
+def get_events():
     return [
-        {"date": "Jan 27, 1994", "headline": "🇧🇷 Born in Santo André, Brazil", "text": "The start of the journey."},
-        {"date": "Aug 1998 - Jan 2000", "headline": "🇩🇪 First International Experience", "text": "Move to Germany - Return Home in 2000."},
-        {"date": "Mar 2009 - Jun 2011", "headline": "🇩🇪 Second Experience in Germany", "text": "Academic period attending Realschule and Gymnasium."},
-        {"date": "Feb 2012 - Dec 2012", "headline": "⚙️ First Job: Engineering Intern", "text": "Rucker do Brasil: Catia V5 design for Peugeot, VW, and Renault."},
-        {"date": "Jul 2016 - Oct 2018", "headline": "🍦 Store Manager", "text": "Managed family business dessert shop."},
-        {"date": "Jan 2017", "headline": "🎓 University Enrollment", "text": "Business Management at FASB."},
-        {"date": "Oct 2019 - Oct 2021", "headline": "🌐 T-Systems do Brasil", "text": "Service Delivery Management intern."},
-        {"date": "Mar 2022 - Dec 2022", "headline": "📦 Business Assistant at Zenatur", "text": "Logistics for Samsung promotional materials."},
-        {"date": "Oct 28, 2022", "headline": "🕯️ Personal Loss", "text": "Passing of my mother - A turning point."},
-        {"date": "Apr 2023", "headline": "🇮🇹 Transfer to Italy", "text": "Moved to Italy to find opportunities in Europe."},
-        {"date": "Aug 2023 - Feb 2024", "headline": "🏎️ Consultant at Micla Engineering", "text": "Supported Italdesign Giugiaro."},
-        {"date": "Oct 2023", "headline": "📈 Master in Data Science", "text": "Enrolled at Rome Business School."},
-        {"date": "Oct 2024", "headline": "🎓 Master's Graduated", "text": "Finished Master in Data Science (Grade 28/30)."},
-        {"date": "May 2025", "headline": "🇵🇹 Dual Citizenship", "text": "Received Portuguese Citizenship."},
-        {"date": "Jul 2025 - Dec 2025", "headline": "🛠️ Quality Analyst for BMW", "text": "Quality analysis for BMW door handles."},
-        {"date": "Oct 2025", "headline": "📜 Imperial College Certificate", "text": "Data Analytics professional certificate."},
-        {"date": "2026", "headline": "🚀 Starting The New Phase", "text": "Ready for new challenges as a Data Analyst!"}
+        {"date": "Jan 27, 1994", "headline": "🇧🇷 Born in Brazil", "text": "The start of the journey."},
+        {"date": "1998 - 2011", "headline": "🇩🇪 Germany Experience", "text": "Academic period and international living."},
+        {"date": "2012", "headline": "⚙️ Engineering Intern", "text": "Rucker do Brasil: Catia V5 design."},
+        {"date": "2016 - 2018", "headline": "🍦 Store Manager", "text": "Financial control and management."},
+        {"date": "2019 - 2021", "headline": "🌐 T-Systems do Brasil", "text": "Service Delivery Management."},
+        {"date": "2022", "headline": "📦 Zenatur", "text": "Logistics for Samsung/BGS."},
+        {"date": "2023", "headline": "🇮🇹 Move to Italy", "text": "Relocation for European opportunities."},
+        {"date": "2023 - 2024", "headline": "🏎️ Micla Engineering", "text": "Automotive testing consultant."},
+        {"date": "2024", "headline": "🎓 Master in Data Science", "text": "Graduated from Rome Business School (28/30)."},
+        {"date": "2025", "headline": "🇵🇹 Dual Citizenship", "text": "Portuguese Citizenship obtained."},
+        {"date": "2025", "headline": "🛠️ BMW Quality Analyst", "text": "Quality analysis for BMW door handles."},
+        {"date": "2026", "headline": "🚀 Data Analyst", "text": "Ready for new challenges in Europe!"}
     ]
 
 # --- 4. RENDERIZAÇÃO ---
-st.title("📂 Professional & Personal Timeline")
-st.subheader("Guilherme Oyakawa de Almeida | Data & Business Analyst")
+st.title("📂 Professional Timeline")
+st.subheader("Guilherme Oyakawa | Data & Business Analyst")
 
-events = get_timeline_data()
+events = get_events()
 
-# Renderizando a abertura da linha
-st.markdown('<div class="v-timeline">', unsafe_allow_html=True)
-
-# Renderizando cada evento individualmente (Mais estável)
-for event in events:
-    st.markdown(f"""
+# Construção em bloco único para evitar múltiplas chamadas de markdown
+timeline_html = '<div class="v-timeline">'
+for e in events:
+    timeline_html += f"""
     <div class="v-event">
         <div class="v-marker"></div>
-        <div class="v-date">{event['date']}</div>
+        <div class="v-date">{e['date']}</div>
         <div class="v-content">
-            <div class="v-headline">{event['headline']}</div>
-            <div class="v-text">{event['text']}</div>
+            <div class="v-headline">{e['headline']}</div>
+            <div class="v-text">{e['text']}</div>
         </div>
-    </div>
-    """, unsafe_allow_html=True)
+    </div>"""
+timeline_html += '</div>'
 
-# Fechando a linha
-st.markdown('</div>', unsafe_allow_html=True)
+st.markdown(timeline_html, unsafe_allow_html=True)
 
 # --- 5. SIDEBAR ---
 with st.sidebar:
-    st.header("Key Information")
-    st.write(f"**Name:** Guilherme Oyakawa de Almeida")
-    st.write(f"**Languages:** PT, EN (C1), DE (B1), IT (B2)")
-    st.write(f"**Citizenship:** Brazilian & Portuguese 🇪🇺")
+    st.header("Key Info")
+    st.info("🇧🇷 Brazilian | 🇵🇹 Portuguese")
+    st.write("**Languages:** PT, EN, DE, IT")
     st.divider()
-    st.header("Technical Skills")
-    st.write("🐍 **Python** | 🗄️ **SQL** | 📊 **BI (Power BI, Tableau)**")
+    st.header("Skills")
+    st.code("Python, SQL, Power BI, Tableau", language='text')
